@@ -60,11 +60,7 @@
       addressLineTwo: addressLineTwo.value,
       postcode: postCode.value,
     });
-    if (!checkOutError.value) {
-      inProgress.value = false;
-    } else {
-      inProgress.value = true;
-    }
+    inProgress.value = false;
   }
 </script>
 
