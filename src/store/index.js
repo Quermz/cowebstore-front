@@ -213,7 +213,7 @@ export default createStore({
           // eslint-disable-next-line no-unused-vars
           let response = await axios({
             method: "post",
-            url: "/api/orders/createOrder",
+            url: "/orders/createOrder",
             data: {
               addressLineOne: address.addressLineOne,
               addressLineTwo: address.addressLineTwo,
