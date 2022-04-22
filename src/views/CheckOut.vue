@@ -62,6 +62,8 @@
     });
     if (!checkOutError.value) {
       inProgress.value = false;
+    } else {
+      inProgress.value = true;
     }
   }
 </script>
