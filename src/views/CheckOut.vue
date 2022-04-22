@@ -51,16 +51,15 @@
   let postCode = ref("");
   let inProgress = ref(true);
 
-  // if (store.getters.getPrice == 0) {
-  //   router.push("/");
-  // }
   async function checkout() {
     await store.dispatch("createOrder", {
       addressLineOne: addressLineOne.value,
       addressLineTwo: addressLineTwo.value,
       postcode: postCode.value,
     });
-    inProgress.value = false;
+    if (!checkOutError) {
+      inProgress.value = false;
+    }
   }
 </script>
 
