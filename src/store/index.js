@@ -2,9 +2,6 @@ import { createStore } from "vuex";
 import axios from "axios";
 import router from "@/router";
 
-// Set up environment variables and base url for Axios
-
-console.log(process.env);
 axios.defaults.baseURL = "https://cowebstore.herokuapp.com/api";
 
 export default createStore({
@@ -29,8 +26,10 @@ export default createStore({
         state.cart.forEach((item) => {
           price += item.price;
         });
+        price = Math.round(price * 100) / 100;
+      } else if (state.cart.lengt == 0) {
+        price = 0;
       }
-      price = Math.round(price * 100) / 100;
       return price;
     },
     getProduct(state) {
@@ -224,10 +223,11 @@ export default createStore({
               userid: state.userId,
             },
           });
-          commit("setCheckOutError", false);
+          await commit("setCheckOutError", false);
           commit("setCart", []);
         } catch (error) {
           commit("setCheckOutError", true);
+          console.log(error);
         }
       } else if (!state.loggedIn) {
         try {
@@ -242,10 +242,12 @@ export default createStore({
               products: state.basket,
             },
           });
+
           commit("setCheckOutError", false);
           commit("setCart", []);
         } catch (error) {
           commit("setCheckOutError", true);
+          console.log(error);
         }
       }
     },

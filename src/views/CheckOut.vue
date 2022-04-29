@@ -29,8 +29,8 @@
       <input type="submit" @click="checkout" class="submitButton" />
     </form>
     <div class="completeContainer" v-if="!inProgress">
-      Checkout successful
-      <router-link to="/"><button>Return to homepage.</button></router-link>
+      Checkout successful.
+      <router-link to="/">Return to homepage.</router-link>
     </div>
   </div>
 </template>
@@ -57,7 +57,9 @@
       addressLineTwo: addressLineTwo.value,
       postcode: postCode.value,
     });
-    if (!checkOutError) {
+
+    if (!checkOutError.value) {
+      console.log("first");
       inProgress.value = false;
     }
   }
